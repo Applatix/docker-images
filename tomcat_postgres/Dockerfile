@@ -62,6 +62,6 @@ VOLUME "/opt/tomcat/webapps"
 WORKDIR /opt/tomcat
 
 
-	# Define default command.
+# Define default command.
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
 
