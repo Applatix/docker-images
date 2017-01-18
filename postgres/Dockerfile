@@ -41,12 +41,12 @@ USER postgres
 
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
-    createdb -O docker docker
+    createdb -O docker docker &&\
+    createdb -O postgres npgeek -E 'UTF8'
 
-RUN    /etc/init.d/postgresql start &&\
-    psql --command "ALTER USER Postgres WITH PASSWORD postgres1 &&\
-    CREATE DATABASE npgeek  WITH OWNER postgres ENCODING 'UTF8'; && \
-    GRANT ALL PRIVILEGES ON DATABASE npgeek TO postgres;
+#RUN    /etc/init.d/postgresql start &&\
+#    psql --command "ALTER USER Postgres WITH PASSWORD 'postgres1';" &&\
+#    CREATE DATABASE npgeek  WITH OWNER postgres ENCODING 'UTF8'; 
 
 
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
