@@ -66,9 +66,12 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 EXPOSE 8080
 EXPOSE 8009
 
-ADD tomcat.service /etc/systemd/system/
+#ADD tomcat.service /etc/systemd/system/
 VOLUME "/opt/tomcat/webapps"
 WORKDIR /opt/tomcat
+
+COPY ./m3-java-capstone-1.0.war /usr/local/tomcat/webapps/m3-java-capstone-1.0.war
+
 
 
 
@@ -99,7 +102,8 @@ RUN    /etc/init.d/postgresql start &&\
 #    psql --command "ALTER USER Postgres WITH PASSWORD 'postgres1';" &&\
 #    CREATE DATABASE npgeek  WITH OWNER postgres ENCODING 'UTF8'; 
 
-ADD npgeek.sql /tmp
+
+ADD npgeek.sql /docker-entrypoint-initdb.d/
 
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
@@ -109,6 +113,8 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
 # Expose the PostgreSQL port
 EXPOSE 5432
+
+#RUN mkdir -p /etc/postgresql && chown -R postgres /var/run/postgresql
 
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
