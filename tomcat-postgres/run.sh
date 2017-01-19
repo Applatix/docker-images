@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Stop on error
-set -e
+sudo set -e
 
 # Variables
-DATA_DIR=/var/lib/postgresql
+#DATA_DIR=/var/lib/postgresql
 
 #start postgreSQL
 echo "starting postgreSQL ... "

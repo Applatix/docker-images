@@ -109,6 +109,8 @@ ADD init.sql /docker-entrypoint-initdb.d/
 
 USER root
 ADD run.sh /bin
+RUN chmod +x /bin/run.sh
+
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
 
 add pg_hba.conf /etc/postgresql/9.3/main/
