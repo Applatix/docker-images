@@ -104,7 +104,7 @@ RUN    /etc/init.d/postgresql start &&\
 #    CREATE DATABASE npgeek  WITH OWNER postgres ENCODING 'UTF8'; 
 
 
-ADD init.sql /docker-entrypoint-initdb.d/
+ADD init.sql /docker-entrypoint-initdb.d/init.sql
 
 
 USER root
