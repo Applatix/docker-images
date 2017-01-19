@@ -1,3 +1,8 @@
+GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
+GRANT ALL PRIVILEGES ON DATABASE npgeek TO postgres;
+alter user postgres with password 'postgres1'
+
+
 DROP TABLE IF EXISTS survey_result;
 DROP SEQUENCE IF EXISTS seq_surveyId;
 DROP TABLE IF EXISTS weather;

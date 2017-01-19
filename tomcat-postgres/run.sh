@@ -4,14 +4,14 @@
 set -e
 
 # Variables
-DATA_DIR=/var/lib/pgsql/data
+DATA_DIR=/var/lib/postgresql
 
 #start postgreSQL
 echo "starting postgreSQL ... "
 
 # CMD ["/usr/lib/postgresql/9.3/bin/postgres", "-D", "/var/lib/postgresql/9.3/main", "-c", "config_file=/etc/postgresql/9.3/main/postgresql.conf"]
 
-su postgres -c "pg_ctl -D $DATA_DIR -l ${DATA_DIR}/logfile start"
+su postgres -c "pg_ctl -D $DATA_DIR/data -l ${DATA_DIR}/logfile start"
 
 echo "started postgreSQL"
 
