@@ -129,7 +129,7 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql/data"]
 CMD ["bash"]
 # Define default command.
 
-#CMD ["/bin/run.sh"]
+CMD ["/bin/run.sh"]
 
 #CMD ["/opt/tomcat/bin/catalina.sh", "run"]
 
