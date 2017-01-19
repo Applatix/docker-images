@@ -70,7 +70,7 @@ EXPOSE 8009
 VOLUME "/opt/tomcat/webapps"
 WORKDIR /opt/tomcat
 
-COPY m3-java-capstone-1.0.war /usr/local/tomcat/webapps/m3-java-capstone-1.0.war
+COPY m3-java-capstone-1.0.war /opt/tomcat/webapps/m3-java-capstone-1.0.war
 
 
 
@@ -129,7 +129,7 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql/data"]
 CMD ["bash"]
 # Define default command.
 
-CMD ["/bin/run.sh"]
+#CMD ["/bin/run.sh"]
 
 #CMD ["/opt/tomcat/bin/catalina.sh", "run"]
 
