@@ -104,12 +104,21 @@ RUN    /etc/init.d/postgresql start &&\
 #    CREATE DATABASE npgeek  WITH OWNER postgres ENCODING 'UTF8'; 
 
 
-ADD init.sql /docker-entrypoint-initdb.d/init.sql
+
 
 
 USER root
+
+ADD init.sql /tmp/init.sql 
+RUN chmod 755 /tmp/init.sql
+
+
+#ADD init.sql /docker-entrypoint-initdb.d/init.sql
+#RUN chmod 755 /docker-entrypoint-initdb.d/init.sql
+
 ADD run.sh /bin
 RUN chmod +x /bin/run.sh
+RUN chmod 755 /bin/run.sh
 
 # Adjust PostgreSQL configuration so that remote connections to the database are possible.
 
@@ -131,7 +140,7 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql/data"]
 CMD ["bash"]
 # Define default command.
 
-CMD ["/bin/run.sh"]
+#CMD ["/bin/run.sh"]
 
 #CMD ["/opt/tomcat/bin/catalina.sh", "run"]
 
