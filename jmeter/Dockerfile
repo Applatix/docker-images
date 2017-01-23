@@ -2,7 +2,9 @@
 FROM ubuntu
 MAINTAINER dinar@applatix.com
 
-# Install wger & JRE
+USER root
+
+# Install wget & JRE
 RUN apt-get clean && \
 	apt-get update && \
 	apt-get -qy install \
@@ -15,16 +17,17 @@ RUN apt-get clean && \
 # Install jmeter
 RUN   mkdir /jmeter \
       && cd /jmeter/ \
-      && wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-3.1.tgz https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-2.13.tgz \
-      && tar -xzf apache-jmeter-2.13.tgz \
-      && rm apache-jmeter-2.13.tgz \
-	  && mkdir /jmeter-plugins \
-	  && cd /jmeter-plugins/ \
-	  && wget https://jmeter-plugins.org/downloads/file/JMeterPlugins-ExtrasLibs-1.4.0.zip \
-	  && unzip -o JMeterPlugins-ExtrasLibs-1.4.0.zip -d /jmeter/apache-jmeter-2.13/
+      && wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-3.1.tgz  \
+      && tar -xzf apache-jmeter-3.1.tgz \
+      && rm apache-jmeter-3.1.tgz 
+ 
+ADD jmeter-plugins-manager-0.11.jar /jmeter/apache-jmeter-3.1/lib/ext
+
 
 # Set Jmeter Home
-ENV JMETER_HOME /jmeter/apache-jmeter-2.13/
+ENV JMETER_HOME /jmeter/apache-jmeter-3.1/
 
 # Add Jmeter to the Path
 ENV PATH $JMETER_HOME/bin:$PATH
+
+#CMD ["bash"]
