@@ -97,15 +97,6 @@ RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
     createdb -O docker docker &&\
     createdb -O postgres npgeek -E 'UTF8'
-    
-
-#RUN    /etc/init.d/postgresql start &&\
-#    psql --command "ALTER USER Postgres WITH PASSWORD 'postgres1';" &&\
-#    CREATE DATABASE npgeek  WITH OWNER postgres ENCODING 'UTF8'; 
-
-
-
-
 
 USER root
 
@@ -132,8 +123,6 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 # Expose the PostgreSQL port
 EXPOSE 5432
 
-#RUN mkdir -p /etc/postgresql && chown -R postgres /var/run/postgresql
-
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql/data"]
 
@@ -141,8 +130,4 @@ CMD ["bash"]
 # Define default command.
 
 #CMD ["/bin/run.sh"]
-
-#CMD ["/opt/tomcat/bin/catalina.sh", "run"]
-
-#CMD ["/usr/lib/postgresql/9.3/bin/postgres", "-D", "/var/lib/postgresql/9.3/main", "-c", "config_file=/etc/postgresql/9.3/main/postgresql.conf"]
 
