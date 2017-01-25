@@ -32,4 +32,4 @@ sh /opt/tomcat/bin/catalina.sh start
 echo "started tomcat"
 
 # keep the stdin
-/bin/bash
+#/bin/bash
