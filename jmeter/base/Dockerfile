@@ -9,9 +9,11 @@ RUN apt-get clean && \
 	apt-get update && \
 	apt-get -qy install \
 				wget \
+				curl \
 				default-jre-headless \
 				telnet \
 				iputils-ping \
+				nano \
 				unzip
 
 # Install jmeter
@@ -23,6 +25,7 @@ RUN   mkdir /jmeter \
  
 ADD jmeter-plugins-manager-0.11.jar /jmeter/apache-jmeter-3.1/lib/ext
 
+ADD jmeter-test.jmx /jmeter/apache-jmeter-3.1/bin
 
 # Set Jmeter Home
 ENV JMETER_HOME /jmeter/apache-jmeter-3.1/
