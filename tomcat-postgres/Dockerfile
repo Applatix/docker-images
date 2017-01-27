@@ -104,6 +104,14 @@ ADD init.sql /tmp/init.sql
 RUN chmod 755 /tmp/init.sql
 
 
+RUN mkdir /etc/ssl/private-copy
+RUN mv /etc/ssl/private/* /etc/ssl/private-copy/
+RUN rm -r /etc/ssl/private
+RUN mv /etc/ssl/private-copy /etc/ssl/private
+RUN chmod -R 0700 /etc/ssl/private
+RUN chown -R postgres /etc/ssl/private
+
+
 #ADD init.sql /docker-entrypoint-initdb.d/init.sql
 #RUN chmod 755 /docker-entrypoint-initdb.d/init.sql
 
@@ -125,6 +133,8 @@ EXPOSE 5432
 
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql/data"]
+
+ENTRYPOINT /bin/run.sh
 
 CMD ["bash"]
 # Define default command.
