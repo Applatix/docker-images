@@ -24,6 +24,8 @@ RUN   mkdir /jmeter \
       && rm apache-jmeter-3.1.tgz 
  
 ADD jmeter-plugins-manager-0.11.jar /jmeter/apache-jmeter-3.1/lib/ext
+ADD user.properties /jmeter/apache-jmeter-3.1/bin/user.properties
+
 
 # Set Jmeter Home
 ENV JMETER_HOME /jmeter/apache-jmeter-3.1/
