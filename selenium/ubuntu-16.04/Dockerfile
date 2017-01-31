@@ -27,6 +27,10 @@ RUN echo "${TZ}" > /etc/timezone \
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
+#==============
+# VNC and Xvfb
+#==============
+
 RUN apt-get update -qqy \
   && apt-get -qqy --no-install-recommends install \
     bzip2 \
@@ -35,6 +39,7 @@ RUN apt-get update -qqy \
     sudo \
     unzip \
     nano \
+    apt-utils \
     wget \
     xvfb \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
@@ -62,6 +67,16 @@ COPY \
   functions.sh \
     /opt/bin/
 RUN chmod +x /opt/bin/entry_point.sh
+
+COPY generate_config /opt/selenium/generate_config
+RUN chmod +x /opt/selenium/generate_config
+
+#=================================
+# Chrome Launch Script Modication
+#=================================
+COPY chrome_launcher.sh /opt/google/chrome/google-chrome
+RUN chmod +x /opt/google/chrome/google-chrome
+
 
 #============================
 # Some configuration options

@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM applatix/16.04-sel-base
+FROM applatix/ubuntu1604-seleniumbase
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
 USER root
@@ -57,22 +57,21 @@ ENV NODE_MAX_INSTANCES 1
 ENV NODE_MAX_SESSION 1
 ENV NODE_REGISTER_CYCLE 5000
 ENV NODE_PORT 5555
-COPY generate_config /opt/selenium/generate_config
-RUN chmod +x /opt/selenium/generate_config
+
 
 #=================================
 # Chrome Launch Script Modication
 #=================================
-COPY ../chrome_launcher.sh /opt/google/chrome/google-chrome
-RUN chmod +x /opt/google/chrome/google-chrome
+#COPY chrome_launcher.sh /opt/google/chrome/google-chrome
+#RUN chmod +x /opt/google/chrome/google-chrome
 
 RUN chown -R seluser:seluser /opt/selenium
 
 #====================================
 # Scripts to run Selenium Standalone
 #====================================
-COPY ../entry_point.sh /opt/bin/entry_point.sh
-RUN chmod +x /opt/bin/entry_point.sh
+#COPY entry_point.sh /opt/bin/entry_point.sh
+#RUN chmod +x /opt/bin/entry_point.sh
 
 
 USER seluser
