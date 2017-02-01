@@ -29,6 +29,8 @@ if [ ! -z "$SE_OPTS" ]; then
   echo "appending selenium options: ${SE_OPTS}"
 fi
 
+# TODO: Look into http://www.seleniumhq.org/docs/05_selenium_rc.jsp#browser-side-logs
+
 SERVERNUM=$(get_server_num)
 
 rm -f /tmp/.X*lock

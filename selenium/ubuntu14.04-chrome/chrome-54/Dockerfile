@@ -1,33 +1,20 @@
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
-# PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM applatix/ubuntu1604-seleniumbase
+FROM applatix/ubuntu1604-seleniumnodebase
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
 USER root
-
-#============================================
-# Google Chrome
-#============================================
-# can specify versions by CHROME_VERSION;
-#  e.g. google-chrome-stable=53.0.2785.101-1
-#       google-chrome-beta=53.0.2785.92-1
-#       google-chrome-unstable=54.0.2840.14-1
-#       latest (equivalent to google-chrome-stable)
-#       google-chrome-beta  (pull latest beta)
-#============================================
 
 RUN \
 	apt-get update && \
 	apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libgconf-2-4 libgdk-pixbuf2.0-0  libglib2.0-0  libgtk2.0-0 libpango1.0-0 nano libxss1 fonts-liberation libappindicator1 libcurl3 xdg-utils && \
 	apt-get update
 
-RUN wget http://www.slimjetbrowser.com/chrome/lnx/chrome64_49.0.2623.75.deb
+RUN wget http://www.slimjetbrowser.com/chrome/lnx/chrome64_54.0.2840.71.deb
 
-RUN dpkg -i chrome64_49.0.2623.75.deb
+RUN dpkg -i chrome64_54.0.2840.71.deb
 
 RUN apt-get -f install 
+
+RUN rm chrome64_54.0.2840.71.deb
 
 #ARG CHROME_VERSION="google-chrome-stable"
 #RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -57,22 +44,16 @@ ENV NODE_MAX_INSTANCES 1
 ENV NODE_MAX_SESSION 1
 ENV NODE_REGISTER_CYCLE 5000
 ENV NODE_PORT 5555
-
+COPY generate_config /opt/selenium/generate_config
+RUN chmod +x /opt/selenium/generate_config
 
 #=================================
 # Chrome Launch Script Modication
 #=================================
-#COPY chrome_launcher.sh /opt/google/chrome/google-chrome
-#RUN chmod +x /opt/google/chrome/google-chrome
+COPY chrome_launcher.sh /opt/google/chrome/google-chrome
+RUN chmod +x /opt/google/chrome/google-chrome
 
 RUN chown -R seluser:seluser /opt/selenium
-
-#====================================
-# Scripts to run Selenium Standalone
-#====================================
-#COPY entry_point.sh /opt/bin/entry_point.sh
-#RUN chmod +x /opt/bin/entry_point.sh
-
 
 USER seluser
 # Following line fixes

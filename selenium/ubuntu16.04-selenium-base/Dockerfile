@@ -2,6 +2,7 @@
 FROM ubuntu:16.04
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
+USER root
 #================================================
 # Customize sources for apt-get
 #================================================
@@ -26,6 +27,12 @@ RUN echo "${TZ}" > /etc/timezone \
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
+#==============
+# VNC and Xvfb
+#==============
+RUN apt-get update -qqy \
+  && apt-get install -y --no-install-recommends apt-utils
+
 RUN apt-get update -qqy \
   && apt-get -qqy --no-install-recommends install \
     bzip2 \
@@ -34,6 +41,7 @@ RUN apt-get update -qqy \
     sudo \
     unzip \
     nano \
+    apt-utils \
     wget \
     xvfb \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
@@ -48,28 +56,8 @@ RUN  mkdir -p /opt/selenium \
 #========================================
 # Add normal user with passwordless sudo
 #========================================
-RUN sudo useradd seluser --shell /bin/bash --create-home \
+RUN  useradd seluser --shell /bin/bash --create-home \
   && sudo usermod -a -G sudo seluser \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
   && echo 'seluser:secret' | chpasswd
 
-#==============================
-# Scripts to run Selenium Node
-#==============================
-COPY \
-  entry_point.sh \
-  functions.sh \
-    /opt/bin/
-RUN chmod +x /opt/bin/entry_point.sh
-
-#============================
-# Some configuration options
-#============================
-ENV SCREEN_WIDTH 1360
-ENV SCREEN_HEIGHT 1020
-ENV SCREEN_DEPTH 24
-ENV DISPLAY :99.0
-
-USER seluser
-
-CMD ["/opt/bin/entry_point.sh"]

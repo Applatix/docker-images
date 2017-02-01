@@ -1,5 +1,5 @@
 
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
 USER root
@@ -59,33 +59,3 @@ RUN  useradd seluser --shell /bin/bash --create-home \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
   && echo 'seluser:secret' | chpasswd
 
-#==============================
-# Scripts to run Selenium Node
-#==============================
-COPY \
-  entry_point.sh \
-  functions.sh \
-    /opt/bin/
-RUN chmod +x /opt/bin/entry_point.sh
-
-COPY generate_config /opt/selenium/generate_config
-RUN chmod +x /opt/selenium/generate_config
-
-#=================================
-# Chrome Launch Script Modication
-#=================================
-COPY chrome_launcher.sh /opt/google/chrome/google-chrome
-RUN chmod +x /opt/google/chrome/google-chrome
-
-
-#============================
-# Some configuration options
-#============================
-ENV SCREEN_WIDTH 1360
-ENV SCREEN_HEIGHT 1020
-ENV SCREEN_DEPTH 24
-ENV DISPLAY :99.0
-
-USER seluser
-
-CMD ["/opt/bin/entry_point.sh"]
