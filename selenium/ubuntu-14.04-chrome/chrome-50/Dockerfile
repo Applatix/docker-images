@@ -1,4 +1,4 @@
-FROM applatix/ubuntu1604-seleniumnodebase
+FROM applatix/ubuntu1404-selenium-node-base
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
 USER root
@@ -8,13 +8,13 @@ RUN \
 	apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libgconf-2-4 libgdk-pixbuf2.0-0  libglib2.0-0  libgtk2.0-0 libpango1.0-0 nano libxss1 fonts-liberation libappindicator1 libcurl3 xdg-utils && \
 	apt-get update
 
-RUN wget http://www.slimjetbrowser.com/chrome/lnx/chrome64_54.0.2840.71.deb
+RUN wget http://www.slimjetbrowser.com/chrome/lnx/chrome64_50.0.2661.75.deb 
 
-RUN dpkg -i chrome64_54.0.2840.71.deb
+RUN dpkg -i chrome64_50.0.2661.75.deb
 
 RUN apt-get -f install 
 
-RUN rm chrome64_54.0.2840.71.deb
+RUN rm chrome64_50.0.2661.75.deb
 
 #ARG CHROME_VERSION="google-chrome-stable"
 #RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \

@@ -1,4 +1,4 @@
-FROM applatix/ubuntu1604-seleniumnodebase
+FROM applatix/ubuntu1404-selenium-node-base
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
 USER root
