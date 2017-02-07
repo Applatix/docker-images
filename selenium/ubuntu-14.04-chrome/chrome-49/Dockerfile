@@ -3,10 +3,19 @@ MAINTAINER dinar dalvi <dinar@applatix.com>
 
 USER root
 
+#RUN echo $(dpkg --list | grep linux-image | awk '{ print $2 }' | sort -V | sed -n '/'`uname -r`'/q;p') $(dpkg --list | grep linux-headers | awk '{ print $2 }' | sort -V | sed -n '/'"$(uname -r | sed "s/\([0-9.-]*\)-\([^0-9]\+\)/\1/")"'/q;p') | xargs sudo apt-get -y purge
+
 RUN \
 	apt-get update && \
-	apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libgconf-2-4 libgdk-pixbuf2.0-0  libglib2.0-0  libgtk2.0-0 libpango1.0-0 nano libxss1 fonts-liberation libappindicator1 libcurl3 xdg-utils && \
-	apt-get update
+	apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libgconf-2-4 libgdk-pixbuf2.0-0
+
+RUN apt-get install -y libglib2.0-0  libgtk2.0-0 
+
+RUN apt-get install -y libpango1.0-0 nano libxss1 fonts-liberation libappindicator1 libcurl3 xdg-utils
+
+RUN sudo apt purge libplymouth2
+
+RUN	apt-get update
 
 RUN wget http://www.slimjetbrowser.com/chrome/lnx/chrome64_49.0.2623.75.deb
 

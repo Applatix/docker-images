@@ -1,15 +1,15 @@
 #!/bin/bash
 
 
-#cd /Users/dinar_dalvi/applatix_code/docker-images/selenium/ubuntu-14.04-chrome/selenium-nodeBase
+cd /Users/dinar_dalvi/applatix_code/docker-images/selenium/ubuntu-14.04-chrome/selenium-nodeBase
 
-#docker build -t applatix/ubuntu1404-selenium-node-base .
+docker build -t applatix/ubuntu1404-selenium-node-base .
 
-#echo "done building now pushing the image.."
+echo "done building now pushing the image.."
 
-#docker push applatix/ubuntu1404-selenium-node-base
+docker push applatix/ubuntu1404-selenium-node-base
 
-#sleep 5 
+sleep 5 
 
 echo "building remaining images .."
 

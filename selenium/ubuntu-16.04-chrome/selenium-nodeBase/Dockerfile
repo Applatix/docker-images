@@ -1,5 +1,5 @@
 
-FROM applatix/ubuntu1604-seleniumbase
+FROM applatix/ubuntu1404-seleniumbase
 MAINTAINER dinar dalvi <dinar@applatix.com>
 
 ENV DEBIAN_FRONTEND noninteractive

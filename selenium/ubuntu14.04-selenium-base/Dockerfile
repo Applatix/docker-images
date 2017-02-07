@@ -6,9 +6,9 @@ USER root
 #================================================
 # Customize sources for apt-get
 #================================================
-RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/apt/sources.list \
-  && echo "deb http://archive.ubuntu.com/ubuntu xenial-updates main universe\n" >> /etc/apt/sources.list \
-  && echo "deb http://security.ubuntu.com/ubuntu xenial-security main universe\n" >> /etc/apt/sources.list
+RUN  echo "deb http://archive.ubuntu.com/ubuntu trusty main universe\n" > /etc/apt/sources.list \
+  && echo "deb http://archive.ubuntu.com/ubuntu trusty-updates main universe\n" >> /etc/apt/sources.list \
+  && echo "deb http://security.ubuntu.com/ubuntu trusty-security main universe\n" >> /etc/apt/sources.list
 
 #===================
 # Timezone settings
@@ -35,15 +35,28 @@ RUN apt-get update -qqy \
   && apt-get -qqy --no-install-recommends install \
     bzip2 \
     ca-certificates \
-    openjdk-8-jre-headless \
     sudo \
     unzip \
     nano \
     apt-utils \
     wget \
     xvfb \
-  && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-  && sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/* 
+  
+RUN \
+	sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+	apt-get update && \
+	apt-get install -y build-essential && \
+	apt-get install -y software-properties-common && \
+	add-apt-repository ppa:openjdk-r/ppa && \
+	apt-get update && \ 
+	apt-get -y install openjdk-8-jdk && \  
+	update-alternatives --config java 
+
+RUN sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
+
+ # Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 #==========
 # Selenium
