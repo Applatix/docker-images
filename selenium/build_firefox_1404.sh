@@ -53,37 +53,37 @@ sleep 3
 
 echo "done building now uploading "
 
-#docker push applatix/ubuntu1404-firefox44
+docker push applatix/ubuntu1404-firefox44
 
-#sleep 5
+sleep 5
 
-#docker push applatix/ubuntu1404-firefox45
+docker push applatix/ubuntu1404-firefox45
 
-#sleep 5
+sleep 5
 
-#docker push applatix/ubuntu1404-firefox44
+docker push applatix/ubuntu1404-firefox44
 
-#sleep 5
+sleep 5
 
-#docker push applatix/ubuntu1404-firefox47
+docker push applatix/ubuntu1404-firefox47
 
-#sleep 5
+sleep 5
 
-#docker push applatix/ubuntu1404-firefox48
+docker push applatix/ubuntu1404-firefox48
 
-#sleep 5
+sleep 5
 
-#docker push applatix/ubuntu1404-firefox49
+docker push applatix/ubuntu1404-firefox49
 
-#sleep 5
+sleep 5
 
-#docker push applatix/ubuntu1404-firefox50
+docker push applatix/ubuntu1404-firefox50
 
-#sleep 5 
+sleep 5 
 
-#docker push applatix/ubuntu1404-firefoxlatest
+docker push applatix/ubuntu1404-firefoxlatest
 
-#sleep 5
+sleep 5
 
 echo "done"
 
