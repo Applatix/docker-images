@@ -15,9 +15,9 @@ docker build -t applatix/ubuntu1404-firefox45 .
 
 sleep 3
 
-cd /Users/dinar_dalvi/applatix_code/docker-images/selenium/ubuntu-14.04-firefox/firefox-44
+cd /Users/dinar_dalvi/applatix_code/docker-images/selenium/ubuntu-14.04-firefox/firefox-46
 
-docker build -t applatix/ubuntu1404-firefox44 .
+docker build -t applatix/ubuntu1404-firefox46 .
 
 sleep 3
 
@@ -61,7 +61,7 @@ docker push applatix/ubuntu1404-firefox45
 
 sleep 5
 
-docker push applatix/ubuntu1404-firefox44
+docker push applatix/ubuntu1404-firefox46
 
 sleep 5
 
