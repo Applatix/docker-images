@@ -28,7 +28,7 @@ RUN rm chrome64_52.0.2743.116.deb
 #==================
 # Chrome webdriver 
 #==================
-ARG CHROME_DRIVER_VERSION=2.27 
+ARG CHROME_DRIVER_VERSION=2.24
 RUN wget --no-verbose -O /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip \
   && rm -rf /opt/selenium/chromedriver \
   && unzip /tmp/chromedriver_linux64.zip -d /opt/selenium \
