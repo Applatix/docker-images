@@ -47,7 +47,10 @@ RUN set -ex; \
 
 USER root
 
-ADD html.zip /tmp
+RUN cd /tmp
+
+RUN wget https://s3-us-west-1.amazonaws.com/ax-public/ax-html/html.zip
+
 
 
 #RUN chown www-data:www-data /var/www/html/wp-config.php
