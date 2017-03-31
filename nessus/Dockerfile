@@ -17,7 +17,9 @@ RUN dpkg -i Nessus-6.10.4-ubuntu1110_amd64.deb
 
 
 COPY docker-entrypoint.sh /usr/local/bin/
+EXPOSE 8834
+
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-EXPOSE 8834
-CMD ["bash"]
+
+
