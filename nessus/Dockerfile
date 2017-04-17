@@ -15,13 +15,10 @@ RUN wget https://s3-us-west-1.amazonaws.com/ax-public/nessus/Nessus-6.10.4-ubunt
 
 RUN dpkg -i Nessus-6.10.4-ubuntu1110_amd64.deb
 
-
-COPY docker-entrypoint.sh /usr/local/bin/
 EXPOSE 8834
 
 ENTRYPOINT ["/opt/nessus/sbin/nessus-service"]
 
-#RUN chmod +x /usr/local/bin/docker-entrypoint.sh 
-#ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
 
 
